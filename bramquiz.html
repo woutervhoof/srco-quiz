@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-sham.min.js" ></script>
+    <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" ></script>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <meta charset="utf-8">
+    <title>Formulier titel</title>
+    <style>
+    body{
+
+      background-image: URL("https://scontent-ams3-1.xx.fbcdn.net/v/t35.0-12/13016541_499781310206741_1109432951_o.png?oh=346950e864c081f3924c20f603c8c1c8&oe=5719AD75");
+    }
+      #mainForm{
+        width: 80%;
+        max-width: 600px;
+      }
+      h4{
+        font-family: 'Amatic SC', cursive;
+      }
+      #description, #description p{
+        font-family: 'Amatic SC', cursive;
+        text-align: justify;
+        width: 100%;
+      }
+      img{
+        top:2px;
+        height: 65px;
+        position: relative;
+
+      }
+      .nav-wrapper{
+        height:70px !important;
+      }
+      .tittel{
+        position: relative;
+        top: -100%;
+        left: 130px;
+        font-size: 43px;
+        color: black !important;
+      }
+      label{
+        font-family: 'Amatic SC', cursive;
+        font-size: 15px !important;
+
+      }
+      button{
+        font-family: 'Amatic SC', cursive;
+        font-size: 20px;
+      }
+      .footer{
+        bottom: -60px;
+        position: relative;
+        font-family: 'Amatic SC' ;
+        left: 10px;
+
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <nav>
+      <div class="nav-wrapper orange darken-2">
+        <img src="http://s31.postimg.org/tci2owsd7/lamp_quiz_bram.png" alt="logo quiz srco">
+        <h4 class="tittel">quiznight srco</h4>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <center>
+    <form method="POST" action="/entry/new" id="mainForm">
+    </br></br>
+      <h4 class="sitename">Quiz Sint-Romboutscollege 2016</h4>
+      <div id="description"><p>Naar jaarlijkse traditie organiseert het 6de middelbaar van het Sint-Romboutscollege Mechelen weer een quiz ten voordele van hun eindejaarsbal. Deze quiz gaat door op vrijdag 29 april en begint om 19.30. Een deelname kost 10 EUR per ploeg, een ploeg mag maximaal bestaan uit 6 personen.</p></div>
+    </br>
+      <h4>Inschrijven</h4>
+      <div class="input-field">
+        <input id="naam" type="text" name="name">
+        <label for="naam">Naam</label>
+      </div>
+
+      <div class="input-field">
+        <input id="email" type="text" name="email">
+        <label for="email">Email</label>
+      </div>
+
+      <div id="customfields"><div class="input-field"><input name="fields.ploegnaam" id="ploegnaam" type="text"><label for="ploegnaam">Ploegnaam</label></div><div class="input-field"><input name="fields.ploegledenaantal" id="ploegledenaantal" type="text"><label for="ploegledenaantal">Aantal ploegleden</label></div></div>
+      <button class="btn waves-effect waves-light" id="sendForm" type="submit" name="action">Inschrijven
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    </center>
+    <h27 class="footer">&copy; 2016 SRCO &nbsp    -     &nbsp Made by <a href="http://bramvdb.com/">BramVDB</a> & <a href="http://woutervhoof.github.io/">WVH</a></h27>
+<script>
+      // Fetch fields from API
+      fetch("/api/fields/all").then(function(response){
+        return response.json();
+      }).then(function(fields){
+        for(field_index in fields){
+          var field = fields[field_index]
+          var input = document.createElement("input")
+          var label = document.createElement("label")
+          var container = document.createElement("div")
+          container.className = "input-field"
+          input.setAttribute("name", "fields."+field.Name)
+          input.setAttribute("id", field.Name)
+          input.setAttribute("type", "text")
+          label.innerHTML = field.Label
+          label.setAttribute("for", field.Name)
+          container.appendChild(input)
+          container.appendChild(label)
+          document.querySelector("#customfields").appendChild(container)
+        }
+      }).catch(function(err){
+        console.log("An error occured while fetching fields. ", err)
+      })
+      // Fetch info from API
+      fetch("/api/info").then(function(response){
+        return response.json();
+      }).then(function(info){
+        document.querySelector(".sitename").innerHTML = info.Name
+        document.querySelector("#description").innerHTML = "<p>"+info.Description+"</p>"
+        document.title = info.Name
+      })
+      // Send form when clicked on button
+      document.querySelector("#") // TODO: finish
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  </body>
+</html>
