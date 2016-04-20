@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-sham.min.js" ></script>
     <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" ></script>
 
@@ -12,8 +12,9 @@
     <title>Formulier titel</title>
     <style>
     body{
-
-      background-image: URL("https://scontent-ams3-1.xx.fbcdn.net/v/t35.0-12/13016541_499781310206741_1109432951_o.png?oh=346950e864c081f3924c20f603c8c1c8&oe=5719AD75");
+      font-size: 24px;
+      /*background-image: URL("https://scontent-ams3-1.xx.fbcdn.net/v/t35.0-12/13016541_499781310206741_1109432951_o.png?oh=346950e864c081f3924c20f603c8c1c8&oe=5719AD75");*/
+      background-image: url('/bg.jpg')
     }
       #mainForm{
         width: 80%;
@@ -36,12 +37,11 @@
       .nav-wrapper{
         height:70px !important;
       }
-      .tittel{
-        position: relative;
-        top: -100%;
-        left: 130px;
-        font-size: 43px;
-        color: black !important;
+      .title{
+          position: absolute;
+          top: 0px;
+          left: 130px;
+          color: black !important;
       }
       label{
         font-family: 'Amatic SC', cursive;
@@ -55,11 +55,9 @@
       .footer{
         bottom: -60px;
         position: relative;
-        font-family: 'Amatic SC' ;
+        font-family: 'Amatic SC';
         left: 10px;
-
       }
-
     </style>
 
   </head>
@@ -67,11 +65,9 @@
 
     <nav>
       <div class="nav-wrapper orange darken-2">
-        <img src="http://s31.postimg.org/tci2owsd7/lamp_quiz_bram.png" alt="logo quiz srco">
-        <h4 class="tittel">quiznight srco</h4>
+        <img class="imglamp" src="http://s31.postimg.org/tci2owsd7/lamp_quiz_bram.png" alt="logo quiz srco">
+        <h4 class="title">quiznight srco</h4>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-
-          </li>
         </ul>
       </div>
     </nav>
@@ -99,7 +95,7 @@
       </button>
     </form>
     </center>
-    <h27 class="footer">&copy; 2016 SRCO &nbsp    -     &nbsp Made by <a href="http://bramvdb.com/">BramVDB</a> & <a href="http://woutervhoof.github.io/">WVH</a></h27>
+    <h27 class="footer">&copy; 2016 SRCO &nbsp - &nbsp Made by <a href="http://bramvdb.com/">BramVDB</a> & <a href="http://woutervhoof.github.io/">WVH</a></h27>
 <script>
       // Fetch fields from API
       fetch("/api/fields/all").then(function(response){
